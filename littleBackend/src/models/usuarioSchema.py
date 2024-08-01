@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from typing import Optional
 
 from pydantic import BaseModel
@@ -15,10 +15,10 @@ class UsuarioResponse(BaseModel):
 
 
 class UsuarioRequest(BaseModel):
-    usuarioId: int
+    usuarioId: Optional[int] = None
     nome: Optional[str] = None
     sobrenome: Optional[str] = None
-    dataNascimento: Optional[datetime] = None
-    ativo: Optional[bool] = None
-    dataUltAlt: Optional[datetime] = None
-    dataCadastro: Optional[datetime] = None
+    dataNascimento: Optional[date] = None
+    # ativo: Optional[bool] = None
+    # dataUltAlt: Optional[datetime] = None
+    # dataCadastro: Optional[datetime] = None

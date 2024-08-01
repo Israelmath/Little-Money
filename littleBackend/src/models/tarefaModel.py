@@ -2,11 +2,12 @@
 
 from datetime import datetime
 from sqlalchemy import String, Column, Integer, Boolean, DateTime, Numeric
+from sqlalchemy_serializer import SerializerMixin
 
 from src.database.database import Base
 
 
-class Tarefa(Base):
+class Tarefa(Base, SerializerMixin):
     __tablename__ = "Tarefa"
 
     tarefaId = Column(Integer, primary_key=True, autoincrement=True)

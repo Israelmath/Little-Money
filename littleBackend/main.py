@@ -2,12 +2,10 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# from src.controller.healthCheckController import healthCheckRouter
-# from src.controller.advogadoController import advogadoRouter
-# from src.controller.escritorioController import escritorioRouter
-# from src.controller.enderecoController import enderecoRouter
-# from src.controller.contatoController import contatoRouter
-# from src.controller.prevAuthController import prevAuthRouter
+from src.controller.contaController import contaRouter
+from src.controller.usuarioController import usuarioRouter
+from src.controller.tarefaController import tarefaRouter
+from src.controller.tarefaItemController import tarefaItemRouter
 
 app = FastAPI()
 
@@ -24,12 +22,10 @@ app.add_middleware(
 
 
 #Incluindo rotas
-# app.include_router(healthCheckRouter)
-# app.include_router(advogadoRouter)
-# app.include_router(escritorioRouter)
-# app.include_router(enderecoRouter)
-# app.include_router(contatoRouter)
-# app.include_router(prevAuthRouter)
+app.include_router(contaRouter)
+app.include_router(tarefaRouter)
+app.include_router(tarefaItemRouter)
+app.include_router(usuarioRouter)
 
 
 if __name__ == '__main__':

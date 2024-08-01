@@ -2,11 +2,12 @@
 
 from datetime import datetime
 from sqlalchemy import String, Column, Integer, Boolean, DateTime, Numeric, ForeignKey
+from sqlalchemy_serializer import SerializerMixin
 
 from src.database.database import Base
 
 
-class Conta(Base):
+class Conta(Base, SerializerMixin):
     __tablename__ = "Conta"
 
     contaId = Column(Integer, primary_key=True, autoincrement=True)
