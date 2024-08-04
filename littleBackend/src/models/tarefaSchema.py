@@ -6,7 +6,8 @@ from pydantic import BaseModel
 
 class TarefaResponse(BaseModel):
     tarefaId: int
-    titulo: int
+    usuarioId: int
+    titulo: str
     descricao: str
     valor: float
     frequencia: str
@@ -17,12 +18,10 @@ class TarefaResponse(BaseModel):
 
 
 class TarefaRequest(BaseModel):
-    tarefaId: int
-    titulo: Optional[int] = None
+    usuarioId: int
+    titulo: Optional[str] = None
     descricao: Optional[str] = None
     valor: float
     frequencia: Optional[str] = None
     obrigatoria: Optional[bool] = None
     ativo: Optional[bool] = None
-    dataUltAlt: Optional[datetime] = None
-    dataCadastro: Optional[datetime] = None

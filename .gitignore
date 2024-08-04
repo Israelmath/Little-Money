@@ -127,3 +127,4 @@ littleapp/linux/
 littleapp/web/
 littleapp/macos/
 littleapp/windows/
+littleapp/.*

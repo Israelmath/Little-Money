@@ -8,7 +8,7 @@ class UsuarioResponse(BaseModel):
     usuarioId: int
     nome: str
     sobrenome: str
-    dataNascimento: datetime
+    dataNascimento: date
     ativo: bool
     dataUltAlt: datetime
     dataCadastro: datetime

@@ -5,11 +5,10 @@ from pydantic import BaseModel
 
 
 class TarefaItemResponse(BaseModel):
-    tarefaItemId: int
     tarefaId: int
     usuarioId: int
     finalizado: bool
-    dataFinalizacao: datetime
+    dataFinalizacao: Optional[datetime] = None
     pago: bool
     ativo: bool
     dataUltAlt: datetime
@@ -17,7 +16,6 @@ class TarefaItemResponse(BaseModel):
 
 
 class TarefaItemRequest(BaseModel):
-    tarefaItemId: int
     tarefaId: int
     usuarioId: int
     finalizado: bool
