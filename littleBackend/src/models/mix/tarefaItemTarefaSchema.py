@@ -9,7 +9,8 @@ class TarefaItemTarefaResponse(BaseModel):
     usuarioId: int
     titulo: str
     descricao:str
-    valor: float
+    valorAcrescimo: float
+    valorDesconto: Optional[float]
     obrigatoria: bool
     dataItem: date
     finalizado: bool

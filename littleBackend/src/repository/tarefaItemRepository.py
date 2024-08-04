@@ -19,7 +19,7 @@ class TarefaItemRepository:
 
         with DBConnHandler() as db:
             try:
-                listaTarefasDetalhes = db.session.execute(sqlTarefaItemDescricao(usuarioId, hoje))
+                listaTarefasDetalhes = db.session.execute(sqlTarefaItemDescricao(usuarioId, hoje)).fetchall()
 
                 return listaTarefasDetalhes
 
@@ -30,4 +30,26 @@ class TarefaItemRepository:
                 print(f"buscaTarefasDeHoje: err - {err}")
                 db.session.rollback()
                 return None
+
+    def atualizaFinalizaTarefaItem(self, tarefaItemEnviado: TarefaItem) -> bool:
+        with DBConnHandler() as db:
+            try:
+                tarefaItem = db.session.query(TarefaItem).filter(
+                    TarefaItem.tarefaId == tarefaItemEnviado.tarefaId,
+                    TarefaItem.usuarioId == tarefaItemEnviado.usuarioId,
+                    TarefaItem.dataItem == tarefaItemEnviado.dataItem,
+                    TarefaItem.ativo
+                ).one()
+                tarefaItem.finalizado = True
+                db.session.commit()
+
+                return True
+
+            except NoResultFound:
+                return False
+
+            except Exception as err:
+                print(f"atualizaFinalizaTarefaItem: err - {err}")
+                db.session.rollback()
+                return False
 
