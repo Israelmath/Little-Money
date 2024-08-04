@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import IntegrityError
 
@@ -24,5 +26,22 @@ class TarefaRepository:
                 return None
             except Exception as err:
                 print(f"insereNovaTarefa: err - {err}")
+                db.session.rollback()
+                return None
+
+    def buscaTarefasCadastradas(self, usuarioId: int) -> List[Tarefa]:
+        with DBConnHandler() as db:
+            try:
+                listaTarefas: List[Tarefa] = db.session.query(Tarefa).filter(
+                    Tarefa.usuarioId == usuarioId
+                ).all()
+
+                return listaTarefas
+
+            except NoResultFound:
+                return None
+
+            except Exception as err:
+                print(f"buscaTarefasCadastradas: err - {err}")
                 db.session.rollback()
                 return None
