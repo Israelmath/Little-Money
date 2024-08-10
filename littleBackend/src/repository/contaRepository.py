@@ -12,7 +12,7 @@ class ContaRepository:
     def selectMinhaConta(self, usuarioId: int):
         try:
             with DBConnHandler() as db:
-                data = db.session.query(Conta).filter(Conta.usuarioId == usuarioId).one()
+                data: Conta = db.session.query(Conta).filter(Conta.usuarioId == usuarioId).one()
                 return data
         except NoResultFound:
             return None

@@ -13,6 +13,7 @@ class Usuario(Base, SerializerMixin):
     usuarioId = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(30), nullable=False)
     sobrenome = Column(String(60), nullable=False)
+    apelido = Column(String(15), nullable=False)
     dataNascimento = Column(Date, nullable=False)
     ativo = Column(Boolean, default=True)
     dataUltAlt = Column(DateTime, default=datetime.now, nullable=False)
