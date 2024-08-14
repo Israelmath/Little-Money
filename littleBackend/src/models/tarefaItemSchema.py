@@ -1,15 +1,15 @@
-from datetime import datetime
+from datetime import datetime, time, date
 from typing import Optional
 
 from pydantic import BaseModel
 
 
 class TarefaItemResponse(BaseModel):
-    tarefaItemId: int
     tarefaId: int
     usuarioId: int
+    dataItem: Optional[date]
+    dataFinalizacao: Optional[datetime]
     finalizado: bool
-    dataFinalizacao: datetime
     pago: bool
     ativo: bool
     dataUltAlt: datetime
@@ -17,12 +17,12 @@ class TarefaItemResponse(BaseModel):
 
 
 class TarefaItemRequest(BaseModel):
-    tarefaItemId: int
     tarefaId: int
     usuarioId: int
-    finalizado: bool
-    dataFinalizacao: datetime
-    pago: bool
-    ativo: bool
+    dataItem: date
+    dataFinalizacao: Optional[datetime] = None
+    finalizado: Optional[bool] = False
+    pago: Optional[bool] = False
+    ativo: Optional[bool] = False
     dataUltAlt: Optional[datetime] = None
     dataCadastro: Optional[datetime] = None

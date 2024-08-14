@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, time
 from typing import Optional
 
 from pydantic import BaseModel
@@ -6,9 +6,14 @@ from pydantic import BaseModel
 
 class TarefaResponse(BaseModel):
     tarefaId: int
-    titulo: int
+    usuarioId: int
+    titulo: str
     descricao: str
-    valor: float
+    horaInicio: time
+    horaFim: Optional[time]
+    diaTodo: bool
+    valorAcrescimo: float
+    valorDesconto: Optional[float] = 0.0
     frequencia: str
     obrigatoria: bool
     ativo: bool
@@ -17,12 +22,14 @@ class TarefaResponse(BaseModel):
 
 
 class TarefaRequest(BaseModel):
-    tarefaId: int
-    titulo: Optional[int] = None
+    usuarioId: int
+    titulo: str
     descricao: Optional[str] = None
-    valor: float
+    horaInicio: Optional[time] = None
+    horaFim: Optional[time] = None
+    diaTodo: Optional[bool] = False
+    valorAcrescimo: float
+    valorDesconto: Optional[float] = 0.0
     frequencia: Optional[str] = None
     obrigatoria: Optional[bool] = None
     ativo: Optional[bool] = None
-    dataUltAlt: Optional[datetime] = None
-    dataCadastro: Optional[datetime] = None

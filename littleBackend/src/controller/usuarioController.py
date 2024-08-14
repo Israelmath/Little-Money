@@ -15,8 +15,8 @@ def insereUsuario(usuarioEnviado: UsuarioRequest) -> UsuarioResponse:
     """
     novoUsuario: Usuario = Usuario(**usuarioEnviado.model_dump())
 
-    advogadoRepository: UsuarioRepository = UsuarioRepository()
-    novoSalvo = advogadoRepository.insereNovoUsuario(novoUsuario)
+    usuarioRepository: UsuarioRepository = UsuarioRepository()
+    novoSalvo = usuarioRepository.insereNovoUsuario(novoUsuario)
     if novoSalvo is None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -24,3 +24,18 @@ def insereUsuario(usuarioEnviado: UsuarioRequest) -> UsuarioResponse:
         )
 
     return UsuarioResponse(**novoSalvo.to_dict())
+
+@usuarioRouter.get('/{usuarioId}', status_code=status.HTTP_201_CREATED)
+def buscaUsuario(usuarioId: int) -> UsuarioResponse:
+    """
+    Busca um usuário, dado usuarioId
+    """
+    usuarioRepository: UsuarioRepository = UsuarioRepository()
+    usuarioBuscado: Usuario = usuarioRepository.buscaUsuario(usuarioId)
+    if usuarioBuscado is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Usuário não encontrado"
+        )
+
+    return UsuarioResponse(**usuarioBuscado.to_dict())
