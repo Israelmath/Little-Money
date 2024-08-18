@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mobx/mobx.dart';
 
@@ -15,7 +16,7 @@ class TarefaItem extends TarefaItemBase with _$TarefaItem {
 
   void prettyPrint() {
     Map<String, dynamic> data = this.toJson();
-    String prettyString = JsonEncoder.withIndent("   ").convert(data);
+    String prettyString = const JsonEncoder.withIndent("   ").convert(data);
     prettyString.split('\n').forEach((dynamic element) => print(element));
   }
 
@@ -43,6 +44,15 @@ abstract class TarefaItemBase with Store {
 
   @observable
   late bool obrigatoria;
+
+  @observable
+  late DateTime horaInicio;
+
+  @observable
+  DateTime? horaFim;
+
+  @observable
+  late bool diaTodo;
 
   @observable
   late DateTime dataItem;

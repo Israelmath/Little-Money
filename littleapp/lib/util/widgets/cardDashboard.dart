@@ -52,7 +52,7 @@ class CardDashboard extends StatelessWidget {
                   ],
                 ),
                 child: Image(
-                  image: buscaIconeAleatorio(TemaIcone.planets),
+                  image: buscaIconeAleatorio(TemaIcone.sea),
                   width: wCard * .25,
                   height: wCard * .25,
                 ),

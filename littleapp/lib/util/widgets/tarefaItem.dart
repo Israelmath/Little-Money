@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:littleapp/modelo/tarefaItem.dart';
+import 'package:littleapp/util/util.dart';
 
 class TarefaItemCard extends StatelessWidget {
   final TarefaItem item;
@@ -14,34 +15,41 @@ class TarefaItemCard extends StatelessWidget {
     double lWidth = MediaQuery.sizeOf(context).width;
     double lHeight = MediaQuery.sizeOf(context).height;
 
+    print(item);
+
     return Container(
       width: lWidth,
-      height: lHeight * .1,
+      height: lHeight * .15,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [BoxShadow( color: Colors.grey.withOpacity(.3), offset: const Offset(2, 2))],
         borderRadius: const BorderRadius.all(Radius.circular(8))
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              // Ícone
-              padding: const EdgeInsets.only(right: 16),
-              child: _esquerda(),
-            ),
+      child: Stack(
+        children: [
+          Container(
 
-            _centro(), // Conteúdo central
+          ),
+          Container(
+            width: lWidth * .8,
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            color: Colors.grey,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  // Ícone
+                  padding: const EdgeInsets.only(right: 16),
+                  child: _esquerda(),
+                ),
 
-            Padding(
-              // Botão menu
-              padding: const EdgeInsets.only(left: 16),
-              child: _direita(lWidth),
+                _centro(), // Conteúdo central
+
+                _direita(lWidth),
+              ],
             ),
-          ],
-        ),
+          ),
+        ]
       ),
     );
   }
@@ -112,7 +120,7 @@ class TarefaItemCard extends StatelessWidget {
 
         const SizedBox(width: 24),
 
-        Text('Hora restante: 5 minutos',
+        Text('Tempo restante: ${tempoRestante(item.dataItem)}',
             style:
                 GoogleFonts.roboto(fontWeight: FontWeight.w300, fontSize: 10))
       ],

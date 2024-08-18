@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:littleapp/modelo/tarefaItem.dart';
 import 'package:littleapp/modulo/dashboard/dashboard.controller.dart';
 import 'package:littleapp/util/widgets/cardDashboard.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -167,7 +168,7 @@ class Dashboard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'TAREFAS',
+                    'TAREFA',
                     style: GoogleFonts.montserrat(
                         color: Colors.blueAccent.shade700,
                         fontSize: 24,
@@ -180,7 +181,7 @@ class Dashboard extends StatelessWidget {
                         ]),
                   ),
                   Text(
-                    ' diárias',
+                    ' de hoje',
                     style: GoogleFonts.teko(
                       color: Colors.black45,
                       fontSize: 24,
@@ -194,13 +195,18 @@ class Dashboard extends StatelessWidget {
                 ? const Center(child: CircularProgressIndicator())
                 : Flexible(
                     child: Observer(builder: (_) {
-                      return ListView.separated(
-                        separatorBuilder: (_, index) =>
-                            const SizedBox(height: 12),
-                        padding: const EdgeInsets.all(4),
-                        itemCount: controller.listaTarefas.length,
-                        itemBuilder: (_, index) => TarefaItemCard(controller.listaTarefas[index]!),
+                      return ListView(
+                        children: [],
                       );
+
+                      // return ListView.separated(
+                      //   shrinkWrap: true,
+                      //   separatorBuilder: (_, index) =>
+                      //       const SizedBox(height: 12),
+                      //   padding: const EdgeInsets.all(4),
+                      //   itemCount: controller.listaTarefas.length,
+                      //   itemBuilder: (_, index) => TarefaItemCard(controller.listaTarefas[index]!),
+                      // );
                     }),
                   ),
           ],
@@ -210,5 +216,16 @@ class Dashboard extends StatelessWidget {
         // ),
       );
     });
+  }
+
+  List<Widget> _carregaCardsTarefa() {
+    List<TarefaItem?> lista = controller.listaTarefas;
+    List<Widget> listaCards = [];
+
+    for(TarefaItem? item in lista) {
+      listaCards.add(Center(child: ,));
+    }
+
+    return listaCards;
   }
 }

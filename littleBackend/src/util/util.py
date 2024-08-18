@@ -17,10 +17,13 @@ def carregaTarefaItemTarefa(lista: List) -> List[TarefaItemTarefaResponse]:
                 valorAcrescimo=task[4],
                 valorDesconto=task[5],
                 obrigatoria=task[6],
-                dataItem=task[7],
-                finalizado=task[8],
-                pago=task[9],
-                ativo=task[10]
+                horaInicio=task[7],
+                horaFim=task[8],
+                diaTodo=task[9],
+                dataItem=task[10],
+                finalizado=task[11],
+                pago=task[12],
+                ativo=task[13]
             )
         )
 
