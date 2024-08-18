@@ -1,1 +1,0 @@
- /home/israel/Projetos/Little\ Money/littleapp/.dart_tool/flutter_build/0093d270d343496957bac6e3522c6d94/native_assets.yaml: 

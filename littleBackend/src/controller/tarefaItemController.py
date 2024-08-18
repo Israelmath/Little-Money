@@ -21,6 +21,9 @@ def minhaConta(usuarioId: int) -> List[TarefaItemTarefaResponse]:
     tarefaItemRep: TarefaItemRepository = TarefaItemRepository()
     listaTarefas = tarefaItemRep.buscaTarefasDeHoje(usuarioId)
 
+    if listaTarefas is None:
+        raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail='Nenhuma tarefa foi encontrada')
+
     #Mapeia as linhas recebidas do banco
     listaResponse = carregaTarefaItemTarefa(listaTarefas)
 
@@ -31,3 +34,16 @@ def minhaConta(usuarioId: int) -> List[TarefaItemTarefaResponse]:
         raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail='Nenhum usuário foi encontrado')
 
     return listaResponse
+
+@tarefaItemRouter.patch('/finalizaTarefaItem/', status_code=200)
+def finalizaTarefaItem(tarefaItem: TarefaItemRequest):
+    """
+    Atualiza a situação de um item para 'finalizado'
+    """
+    tarefaItemEnviada: TarefaItem = TarefaItem(**tarefaItem.model_dump())
+
+    tarefaItemRep: TarefaItemRepository = TarefaItemRepository()
+    if not tarefaItemRep.atualizaFinalizaTarefaItem(tarefaItemEnviada):
+        raise HTTPException(detail='Não foi possível atualizar a tarefa', status_code=status.HTTP_304_NOT_MODIFIED)
+
+    return 'Ok'

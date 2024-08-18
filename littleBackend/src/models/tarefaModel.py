@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from sqlalchemy import String, Column, Integer, Boolean, DateTime, Numeric, ForeignKey
+from sqlalchemy.dialects.mysql import TIME
 from sqlalchemy_serializer import SerializerMixin
 
 from src.database.database import Base
@@ -14,7 +15,11 @@ class Tarefa(Base, SerializerMixin):
     usuarioId = Column(Integer, ForeignKey("Usuario.usuarioId"), nullable=False)
     titulo = Column(String(30), unique=True, nullable=False)
     descricao = Column(String(120), nullable=False)
-    valor = Column(Numeric(precision=5, scale=2), nullable=False)
+    horaInicio = Column(DateTime, nullable=False)
+    horaFim = Column(DateTime, nullable=True)
+    diaTodo = Column(Boolean, nullable=False, default=False)
+    valorAcrescimo = Column(Numeric(precision=5, scale=2), nullable=False)
+    valorDesconto = Column(Numeric(precision=5, scale=2), nullable=False, default=0.0)
     frequencia = Column(String(1), nullable=False, default='D')
     obrigatoria = Column(Boolean, default=True)
     ativo = Column(Boolean, default=True)

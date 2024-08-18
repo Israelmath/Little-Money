@@ -13,8 +13,12 @@ def sqlTarefaItemDescricao(usuarioId: int, dataBusca: date) -> TextClause:
         ti.usuarioId,
         t.titulo,
         t.descricao,
-        t.valor,
+        t.valorAcrescimo,
+        t.valorDesconto,
         t.obrigatoria,
+        t.horaInicio,
+        t.horaFim ,
+        t.diaTodo,
         ti.dataItem,
         ti.finalizado,
         ti.pago,
@@ -24,4 +28,5 @@ def sqlTarefaItemDescricao(usuarioId: int, dataBusca: date) -> TextClause:
             ON t.tarefaId = ti.tarefaId
     WHERE ti.usuarioId = {usuarioId}
       AND ti.dataItem = '{dataBusca}'
+    ORDER BY t.horaInicio, t.valorAcrescimo
     """)

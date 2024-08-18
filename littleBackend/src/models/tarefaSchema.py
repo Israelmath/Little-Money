@@ -9,7 +9,11 @@ class TarefaResponse(BaseModel):
     usuarioId: int
     titulo: str
     descricao: str
-    valor: float
+    horaInicio: datetime
+    horaFim: Optional[datetime]
+    diaTodo: bool
+    valorAcrescimo: float
+    valorDesconto: Optional[float] = 0.0
     frequencia: str
     obrigatoria: bool
     ativo: bool
@@ -19,9 +23,13 @@ class TarefaResponse(BaseModel):
 
 class TarefaRequest(BaseModel):
     usuarioId: int
-    titulo: Optional[str] = None
+    titulo: str
     descricao: Optional[str] = None
-    valor: float
+    horaInicio: Optional[datetime] = None
+    horaFim: Optional[datetime] = None
+    diaTodo: Optional[bool] = False
+    valorAcrescimo: float
+    valorDesconto: Optional[float] = 0.0
     frequencia: Optional[str] = None
     obrigatoria: Optional[bool] = None
     ativo: Optional[bool] = None

@@ -27,3 +27,17 @@ class UsuarioRepository:
                 print(f"insereNovoUsuario: err - {err}")
                 db.session.rollback()
                 return None
+
+    def buscaUsuario(self, usuarioId: int) -> Usuario:
+        with DBConnHandler() as db:
+            try:
+                usuarioBuscado: Usuario = db.session.query(Usuario).filter(Usuario.usuarioId == usuarioId).one()
+                return usuarioBuscado
+
+            except NoResultFound:
+                return None
+
+            except Exception as err:
+                print(f"buscaUsuario: err - {err}")
+                db.session.rollback()
+                return None

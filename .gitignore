@@ -103,6 +103,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*.swp
 
 # Spyder project settings
 .spyderproject
@@ -128,3 +129,8 @@ littleapp/web/
 littleapp/macos/
 littleapp/windows/
 littleapp/.*
+littleapp/.dart_tool/*
+littleapp/.idea/
+*.g.dart
+
+littleMoneyKey.pem

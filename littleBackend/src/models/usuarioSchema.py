@@ -8,6 +8,7 @@ class UsuarioResponse(BaseModel):
     usuarioId: int
     nome: str
     sobrenome: str
+    apelido: str
     dataNascimento: date
     ativo: bool
     dataUltAlt: datetime
@@ -18,6 +19,7 @@ class UsuarioRequest(BaseModel):
     usuarioId: Optional[int] = None
     nome: Optional[str] = None
     sobrenome: Optional[str] = None
+    apelido: Optional[str] = None
     dataNascimento: Optional[date] = None
     # ativo: Optional[bool] = None
     # dataUltAlt: Optional[datetime] = None
