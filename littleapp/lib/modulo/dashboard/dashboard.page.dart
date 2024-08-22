@@ -58,7 +58,7 @@ class Dashboard extends StatelessWidget {
 
   Widget _greetings() {
     return Container(
-      width: w,
+      width: w * .95,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -191,24 +191,23 @@ class Dashboard extends StatelessWidget {
                 ],
               ),
             ),
-            controller.listaTarefas.isEmpty
-                ? const Center(child: CircularProgressIndicator())
-                : Flexible(
-                    child: Observer(builder: (_) {
-                      return ListView(
-                        children: [],
-                      );
+            Observer(builder: (_) {
+              if(controller.listaTarefas.isEmpty) return const Center(child: CircularProgressIndicator());
 
-                      // return ListView.separated(
-                      //   shrinkWrap: true,
-                      //   separatorBuilder: (_, index) =>
-                      //       const SizedBox(height: 12),
-                      //   padding: const EdgeInsets.all(4),
-                      //   itemCount: controller.listaTarefas.length,
-                      //   itemBuilder: (_, index) => TarefaItemCard(controller.listaTarefas[index]!),
-                      // );
-                    }),
-                  ),
+              return Flexible(
+                child: ListView(
+                  children: _carregaCardsTarefa(),
+                ),
+              );
+              // return ListView.separated(
+              //   shrinkWrap: true,
+              //   separatorBuilder: (_, index) =>
+              //       const SizedBox(height: 12),
+              //   padding: const EdgeInsets.all(4),
+              //   itemCount: controller.listaTarefas.length,
+              //   itemBuilder: (_, index) => TarefaItemCard(controller.listaTarefas[index]!),
+              // );
+            })
           ],
         ),
         // child: ListView(
@@ -221,9 +220,13 @@ class Dashboard extends StatelessWidget {
   List<Widget> _carregaCardsTarefa() {
     List<TarefaItem?> lista = controller.listaTarefas;
     List<Widget> listaCards = [];
+    int cont = 0;
+    print("----------lista.length: ${lista.length}");
 
     for(TarefaItem? item in lista) {
-      listaCards.add(Center(child: ,));
+      print("-------------- cont: $cont");
+      listaCards.add(TarefaItemCard(item!));
+      cont++;
     }
 
     return listaCards;

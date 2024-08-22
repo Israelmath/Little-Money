@@ -19,3 +19,21 @@ class ContaRepository:
         except Exception as err:
             db.session.rollback()
             return err
+
+    def criaNovaConta(self, dadosNovaConta: Conta):
+        with DBConnHandler() as db:
+            try:
+                db.session.add(dadosNovaConta)
+                db.session.flush()
+                db.session.refresh(dadosNovaConta)
+                db.session.commit()
+                db.session.expunge(dadosNovaConta)
+
+                return dadosNovaConta
+
+            except NoResultFound:
+                return None
+            except Exception as err:
+                print(f"criaNovaConta: err - {err}")
+                db.session.rollback()
+                return None

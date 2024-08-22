@@ -15,10 +15,9 @@ class ContaResponse(BaseModel):
 
 
 class ContaRequest(BaseModel):
-    contaId: int
-    usuarioId: Optional[int] = None
-    saldo: Optional[float] = None
-    observacao: Optional[float] = None
-    ativo: Optional[bool] = None
+    usuarioId: int
+    saldo: Optional[float] = 0.0
+    observacao: Optional[str] = None
+    ativo: Optional[bool] = True
     dataUltAlt: Optional[datetime] = datetime.now()
-    dataCadastro: Optional[datetime] = None
+    dataCadastro: Optional[datetime] = datetime.now()

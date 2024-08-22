@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class HttpClient {
-  String baseUrl = "192.168.15.5:8000";
+  String baseUrl = "192.168.15.187:8000";
   Client client = http.Client();
   Map<String, String> headers = {"content-type":"application/json; charset=utf-8"};
 

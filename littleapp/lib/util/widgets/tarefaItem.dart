@@ -22,31 +22,31 @@ class TarefaItemCard extends StatelessWidget {
       height: lHeight * .15,
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [BoxShadow( color: Colors.grey.withOpacity(.3), offset: const Offset(2, 2))],
+        boxShadow: [BoxShadow(color: Colors.grey.withOpacity(.3), offset: const Offset(2, 2))],
         borderRadius: const BorderRadius.all(Radius.circular(8))
       ),
       child: Stack(
         children: [
-          Container(
+          Positioned(
+            right: 0,
+            child: Container(
+              width: lWidth * .8,
+              padding: const EdgeInsets.only(left: 8, right: 8),
+              color: Colors.grey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    // Ícone
+                    padding: const EdgeInsets.only(right: 16),
+                    child: _esquerda(),
+                  ),
 
-          ),
-          Container(
-            width: lWidth * .8,
-            padding: const EdgeInsets.only(left: 8, right: 8),
-            color: Colors.grey,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  // Ícone
-                  padding: const EdgeInsets.only(right: 16),
-                  child: _esquerda(),
-                ),
+                  _centro(), // Conteúdo central
 
-                _centro(), // Conteúdo central
-
-                _direita(lWidth),
-              ],
+                  _direita(lWidth),
+                ],
+              ),
             ),
           ),
         ]
