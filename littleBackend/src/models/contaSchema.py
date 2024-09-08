@@ -8,7 +8,7 @@ class ContaResponse(BaseModel):
     contaId: int
     usuarioId: int
     saldo: float
-    observacao: str
+    observacao: Optional[str] = None
     ativo: bool
     dataUltAlt: Optional[datetime] = datetime.now()
     dataCadastro: Optional[datetime] = None

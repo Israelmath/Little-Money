@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:littleapp/modelo/tarefaItem.dart';
 import 'package:littleapp/modulo/dashboard/dashboard.controller.dart';
+import 'package:littleapp/util/design.dart';
 import 'package:littleapp/util/widgets/cardDashboard.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:littleapp/util/widgets/tarefaItem.dart';
@@ -85,31 +86,12 @@ class Dashboard extends StatelessWidget {
               ),
               Text(
                 'Boa noite,',
-                style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: const Offset(1, 1),
-                        color: Colors.black.withOpacity(.2),
-                      ),
-                    ]),
+                style: LittleTextStyle.montserratP,
               ),
               Observer(builder: (BuildContext context) {
                 return Text(
                   '${controller.usuarioAtual.apelido ?? controller.usuarioAtual.nome}',
-                  style: GoogleFonts.montserrat(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    shadows: [
-                      Shadow(
-                        offset: const Offset(1, 1),
-                        color: Colors.black.withOpacity(.2),
-                      ),
-                    ],
-                  ),
+                  style: LittleTextStyle.montserratP,
                 );
               })
             ],
@@ -169,33 +151,29 @@ class Dashboard extends StatelessWidget {
                 children: [
                   Text(
                     'TAREFA',
-                    style: GoogleFonts.montserrat(
-                        color: Colors.blueAccent.shade700,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        shadows: [
-                          Shadow(
-                            offset: const Offset(1, 1),
-                            color: Colors.black.withOpacity(.1),
-                          ),
-                        ]),
+                    style: LittleTextStyle.montserratMBlue,
                   ),
                   Text(
                     ' de hoje',
-                    style: GoogleFonts.teko(
-                      color: Colors.black45,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w300,
-                    ),
+                    style: LittleTextStyle.tekoM,
                   ),
                 ],
               ),
             ),
             Observer(builder: (_) {
-              if(controller.listaTarefas.isEmpty) return const Center(child: CircularProgressIndicator());
+              if (controller.listaTarefas.isEmpty) {
+                return const Center(
+                  child: Text(
+                    "Nenhuma tarefa para hoje.\n Aí sim, hein...",
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.center,
+                  ),
+                );
+              }
 
               return Flexible(
                 child: ListView(
+                  primary: true,
                   children: _carregaCardsTarefa(),
                 ),
               );
@@ -223,7 +201,7 @@ class Dashboard extends StatelessWidget {
     int cont = 0;
     print("----------lista.length: ${lista.length}");
 
-    for(TarefaItem? item in lista) {
+    for (TarefaItem? item in lista) {
       print("-------------- cont: $cont");
       listaCards.add(TarefaItemCard(item!));
       cont++;

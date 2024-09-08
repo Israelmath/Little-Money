@@ -17,7 +17,7 @@ class HttpClient {
       if (response.statusCode >= 200 && response.statusCode <= 400) {
         return jsonDecode(response.body);
       }
-      return null;
+      return {};
 
     }
     catch(err) {

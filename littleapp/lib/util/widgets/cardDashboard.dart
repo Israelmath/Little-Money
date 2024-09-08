@@ -64,16 +64,7 @@ class CardDashboard extends StatelessWidget {
             top: 4,
             child: Text(
               'Saldo',
-              style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      offset: const Offset(2, 2),
-                      color: Colors.black.withOpacity(.3),
-                    ),
-                  ]),
+              style: LittleTextStyle.montserratG,
             ),
           ),
           Observer(builder: (_) {
@@ -90,17 +81,7 @@ class CardDashboard extends StatelessWidget {
                 children: [
                   Text(
                     'R\$ ${integerPart(minhaConta.saldo)}',
-                    style: GoogleFonts.montserrat(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      shadows: [
-                        Shadow(
-                          offset: const Offset(2, 2),
-                          color: Colors.black.withOpacity(.5),
-                        ),
-                      ],
-                    ),
+                    style: LittleTextStyle.montserratG,
                   ),
                   Text(
                     ',${decimalPart(minhaConta.saldo)}',
